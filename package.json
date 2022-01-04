@@ -1,11 +1,18 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "portfolio",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Personal website built with Gatsby + Chakra UI",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Yogesh Sherpa <ysherpa37@gmail.com>",
   "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^2.0.2",
+    "@chakra-ui/react": "^1.7.3",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@hookform/resolvers": "^2.8.5",
+    "framer-motion": "^5.5.5",
     "gatsby": "^4.4.0",
+    "gatsby-plugin-anchor-links": "^1.2.1",
     "gatsby-plugin-gatsby-cloud": "^4.4.0",
     "gatsby-plugin-image": "^2.4.0",
     "gatsby-plugin-manifest": "^4.4.0",
@@ -13,11 +20,15 @@
     "gatsby-plugin-react-helmet": "^5.4.0",
     "gatsby-plugin-sharp": "^4.4.0",
     "gatsby-source-filesystem": "^4.4.0",
+    "gatsby-source-graphql": "^4.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
     "prop-types": "^15.8.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.22.5",
+    "react-icons": "^4.3.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "prettier": "^2.5.1"
@@ -37,9 +48,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/ysherpa3/portfolio"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/ysherpa3/portfolio/issues"
   }
 }

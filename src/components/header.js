@@ -1,42 +1,77 @@
+import { Box, Flex, Link, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import { Link as GatsbyLink } from "gatsby"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
+const ToggleNav = ({ toggle, isOpen }) => (
+  <Box display={{ base: "block", md: "none" }} onClick={toggle}>
+    {isOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
+  </Box>
+)
+
+const MenuItem = ({ children, isLast, to = "/", ...rest }) => (
+  <Link as={AnchorLink} to={to} sx={{ textUnderlineOffset: "0.3em" }}>
+    <Text color="blue.700" fontSize="lg" display="block" {...rest}>
+      {children}
+    </Text>
+  </Link>
+)
+
+const NavLinks = ({ isOpen }) => (
+  <Box
+    display={{ base: isOpen ? "block" : "none", md: "block" }}
+    flexBasis={{ base: "100%", md: "auto" }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
+    <Stack
+      spacing={8}
+      align="center"
+      justify={["center", "space-between", "flex-end", "flex-end"]}
+      direction={["column", "row", "row", "row"]}
+      pt={[4, 4, 0, 0]}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+      <MenuItem to="/#about">About</MenuItem>
+      <MenuItem to="/#projects">Projects</MenuItem>
+      <MenuItem to="/#contact">Contact</MenuItem>
+    </Stack>
+  </Box>
+)
+
+const Navbar = ({ children, ...props }) => (
+  <header style={{ flexShrink: 0 }}>
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      w="100%"
+      p={4}
+      {...props}
+    >
+      {children}
+    </Flex>
   </header>
 )
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+const Header = props => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
-Header.defaultProps = {
-  siteTitle: ``,
+  return (
+    <Navbar {...props}>
+      <Link as={GatsbyLink} to="/">
+        <StaticImage
+          src="../images/logo.png"
+          alt="logo"
+          width={40}
+          quality={95}
+          formats={["auto", "webp", "avif"]}
+        />
+      </Link>
+      <ToggleNav toggle={isOpen ? onClose : onOpen} isOpen={isOpen} />
+      <NavLinks isOpen={isOpen} />
+    </Navbar>
+  )
 }
 
 export default Header

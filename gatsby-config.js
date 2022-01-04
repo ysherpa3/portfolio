@@ -1,9 +1,13 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Yogesh Sherpa Portfolio`,
+    description: `My personal website built with Gatsby and Chakra UI`,
+    author: `Yogesh Sherpa`,
+    siteUrl: `https://yogeshsherpa.com/`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -28,9 +32,22 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo.png`, // This path is relative to the root of the site.
       },
     },
+    `@chakra-ui/gatsby-plugin`,
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "GitHub",
+        fieldName: "github",
+        url: "https://api.github.com/graphql",
+        headers: {
+          Authorization: `Bearer ${process.env.GATSBY_GITHUB_TOKEN}`,
+        },
+      },
+    },
+    `gatsby-plugin-anchor-links`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
